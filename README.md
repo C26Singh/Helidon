@@ -183,3 +183,71 @@ gRPC server & Client
 
 
 Helidon SE
+SE features APIs based on Java SE Flow API
+ . It intensively uses the Builder pattern, fluent APIs, and lambdas.
+ Neither annotations nor dependency injection is used
+ The produced
+code is very clean, and you have complete control over what the code is
+doing because the framework doesn’t generate any code at a build or run time
+
+A drawback is that more coding is required. Also, reactive programming is not easy to use.
+
+The reactive web server APIs are inspired by Express. It makes Helidon
+SE a good choice for JavaScript developers who want to switch to Java.
+
+ Express is a fast, unopinionated, minimalist web framework
+for Node.js
+
+Note-But to use it effectively, you as a player need to know
+how to play for this character. One wrong move, one slow reaction, and
+your warrior is dead.
+
+Which Flavor Should You Use?
+MP or SE
+
+you can use SE into MP but not vice versa.
+Most MP features requires an initialized CDI container which doesn’t exist in SE.
+
+Example Helidon SE functionality in Helidon MP is
+reactive messaging
+
+Tip If you don’t know which flavor to use, use Helidon MP
+
+Use Helidon MP 
+• You don’t know what flavor to choose.
+• You want to use CDI and other MicroProfile
+or Jakarta EE APIs.
+• You are migrating from the existing
+Java EE/Jakarta EE application.
+• You are a Spring Boot or Java EE
+developer and want a similar development
+experience.
+
+Use Helidon SE
+
+•  Performance achieved by heavy
+usage of concurrency is your
+primary goal.
+• You want to have complete control
+of your application.
+• You have experience with reactive
+programming.
+• Your application deals with
+uploading files.
+• Your application is not CDI based,
+and you are not planning to use
+any MicroProfile and Jakarta EE
+APIs.
+
+
+Summary
+• Applications designed to operate in a cloud
+environment utilizing all cloud benefits are called
+cloud native.
+• Helidon is a set of Java libraries for developing cloudnative services.
+• Helidon comes in two flavors: Helidon MP (declarative
+style APIs implementing MicroProfile and some
+Jakarta EE specifications) and Helidon SE (reactive,
+non-blocking APIs).
+If you don’t know which flavor to use, use
+Helidon MP.
