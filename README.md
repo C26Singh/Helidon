@@ -251,3 +251,145 @@ Jakarta EE specifications) and Helidon SE (reactive,
 non-blocking APIs).
 If you don’t know which flavor to use, use
 Helidon MP.
+
+
+Your First Application
+This chapter covers the following topics.
+• Creating a Helidon application using Project Starter, a
+command-line interface (CLI), or Maven archetypes
+• Building an executable JAR, jlink-optimized JVM, and
+GraalVM Native Image
+• Making a Docker image and deploying it to Kubernetes
+
+
+Generating Your First Application
+There are three ways to create a new Helidon project: a
+command-line interface (CLI), Project Starter, or Maven archetypes.
+
+Helidon CLI
+Using CLI, you can create a project based on provided templates.
+It also has a feature called developer loop. When a source code change is
+detected, it automatically recompiles and restarts your application. 
+
+Need JAVA-17 installed at your machine.
+https://www.oracle.com/in/java/technologies/downloads/#jdk21-windows
+check JAVA_HOME 
+java -version
+
+
+Installing Maven:
+https://maven.apache.org/download.cgi
+Choose the appropriate archive format for your operating system (ZIP or TAR.GZ).
+
+Add the bin directory of the extracted Maven distribution to your system's PATH environment variable.
+Additionally, you may want to set the M2_HOME environment variable to point to the Maven installation directory.
+mvn -v
+
+
+How to resolve meven dependencies issues
+Check Network Connection:you can access the Maven Central repository 
+https://repo.maven.apache.org/maven2
+
+Clear Local Repository: 
+You can try deleting the contents of the ~/.m2/repository directory (or %USERPROFILE%\.m2\repository on Windows) to force Maven to redownload dependencies.
+
+Force Update:
+mvn clean install -U
+
+Check Proxy Configuration
+settings.xml file located in the Maven installation directory or the .m2 directory in your user home directory.
+
+Check Repository URL: 
+https://repo.maven.apache.org/maven2  s correctly configured in your pom.xml or settings.xml file.  
+
+Identify the duplicate dependency
+mvn dependency:tree
+
+
+Install CLI
+PowerShell -Command Invoke-WebRequest -Uri "https://helidon.io/cli/latest/windows/helidon.exe" -OutFile "C:\Windows\system32\helidon.exe"
+Type helidon in your command prompt
+Run helidon COMMAND --help for more information on a command.
+
+Quickstart generates a Maven project with all
+dependencies, Dockerfiles, Kubernetes application
+descriptors, and a simple greeting service application
+containing a sample of a RESTful service and all
+needed bootstrap code. If you plan to develop a
+RESTful service, it’s a good option.
+• Database is the best option if your application works
+with databases. The generated project contains all
+needed third-party dependencies, configuration files,
+and bootstrap code.
+• Custom offers more choices and allows fine-grained
+customization of your project. It asks about the media
+support you want and whether you want to enable
+metrics, health checks, and tracing. Also, it asks about
+database support and allows you to choose between
+Hibernate and EclipseLink
+
+ JSON library
+ 
+• Jackson is a popular library for binding Java classes to
+JSON objects. It’s the default choice.
+• JSON-B is Jakarta JSON Binding specification
+implementation. To be more specific, Yasson is used.
+Choose this option if you want to be fully standardscompliant.
+
+
+Project Starter
+Project Starter is a web application allowing the generation of Helidon projects
+
+https://helidon.io/starter/4.0.5?step=1
+
+configure your project and download a zip file containing the generated project.
+
+Helidon Maven Archetypes
+mvn -U archetype:generate -DinteractiveMode=false \
+ -DarchetypeGroupId=io.helidon.archetypes \
+ -DarchetypeArtifactId=helidon-quickstart-mp \
+ -DarchetypeVersion=3.0.0 \
+ -DgroupId=me.dmitry-helidon \
+ -DartifactId=quickstart-mp \
+ -Dpackage=me.dmitry.mp.quickstart
+ 
+ 
+ 
+ Helidon maven archetype and corresponding cli option
+ Maven Archetype CLI Option Description
+helidon-bare-mp --flavor MP
+--archetype bare
+Helidon MP application with
+minimum dependencies
+helidon-quickstart-mp --flavor MP
+--archetype
+quickstart
+Sample Helidon MP project that
+includes multiple REST operations
+(greeting service) (It is analyzed
+later in this chapter.)
+helidon-database-mp --flavor MP
+--archetype
+database
+Helidon MP application that uses
+JPA with in-memory H2 database
+helidon-bare-se --flavor SE
+--archetype bare
+Minimal Helidon SE project
+suitable to start from scratch
+helidon-quickstart-se --flavor SE
+--archetype
+quickstart
+Sample Helidon SE project that
+includes multiple REST operations
+(greeting service)
+helidon-database-se --flavor SE
+--archetype
+database
+Helidon SE application that uses
+Helidon DBClient with in-memory
+H2 database
+
+
+
+
